@@ -1,5 +1,32 @@
+.sideBarAndBeer {
+  display: flex;
+  flex-direction: row;
+}
+
+
 .beerContainer {
   display: grid;
+  width: 80%;
+  padding: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 15px;
+  margin-left: 10px;
+  border: 1px solid green;
+}
+
+.sideBarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  border: 1px blue solid;
+  padding: 10px;
+}
+
+.headerAndSearch {
+  border: 1px red solid;
+  text-align: center;
+  margin-bottom: 10px;
+  width: 90%;
 }
