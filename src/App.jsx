@@ -23,7 +23,7 @@ function App() {
   return (
     <div>
       <h1>test</h1>
-      <div className="beersContainer">
+      <div className="beerContainer">
         {beers && <AllBeers beers={beers}/>}
       </div>
     </div>
