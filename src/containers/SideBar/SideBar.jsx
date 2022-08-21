@@ -5,23 +5,13 @@ import BeerCard from "../../components/BeerCard/BeerCard";
 import { useState, useEffect } from 'react';
 
 const SideBar = (props) => {
-    const [beer, setBeer] = useState([]);
-    
-    const {beers} = props;
+    const {beers, handleAllClicked, handleAcidicClicked, handleClassicRangeClicked, handleHighABVClicked} = props;
     
     // All Beers
     const mappedBeers = beers.map((beer, id) => { 
         return <BeerCard key={id} name={beer.name} image={beer.image_url} abv={beer.abv} tagline={beer.tagline} />
       });
-    
-    const allState = () => {
-        setBeer(mappedBeers);
-    }
 
-    const handleAllClicked = () => {
-        mappedBeers();
-        allState();
-    }
 
     // Acidic Beers 
     const acidicBeers = beers.filter((beer) => { 
@@ -32,14 +22,14 @@ const SideBar = (props) => {
         return <BeerCard key={id} name={beer.name} image={beer.image_url} abv={beer.abv} tagline={beer.tagline} />
       });
     
-    const acidicState = () => {
-        setBeer(mappedAcidicBeers)
-    };
+    // const acidicState = () => {
+    //     setBeer(mappedAcidicBeers)
+    // };
 
-    const handleAcidicClicked = () => {
-        mappedAcidicBeers()
-        acidicState()
-    };
+    // const handleAcidicClicked = () => {
+    //     mappedAcidicBeers()
+    //     acidicState()
+    // };
 
     // Classic Range Beers
     const classicRangeBeers = beers.filter((beer) => { 
@@ -51,14 +41,14 @@ const SideBar = (props) => {
         return <BeerCard key={id} name={beer.name} image={beer.image_url} abv={beer.abv} tagline={beer.tagline} />
       });
 
-    const classicRangeState = () => {
-        setBeer(mappedClassicRangeBeers)
-    };
+    // const classicRangeState = () => {
+    //     setBeer(mappedClassicRangeBeers)
+    // };
 
-    const handleClassicRangeClicked = () => {
-        classicRangeState();
-        mappedClassicRangeBeers();
-    }
+    // const handleClassicRangeClicked = () => {
+    //     classicRangeState();
+    //     mappedClassicRangeBeers();
+    // }
 
     // High ABV Beers
     const HighABVBeers = beers.filter((beer) => { 
@@ -69,25 +59,35 @@ const SideBar = (props) => {
         return <BeerCard key={id} name={beer.name} image={beer.image_url} abv={beer.abv} tagline={beer.tagline} />
       });
 
-    const HighABVState = () => {
-        setBeer(mappedHighABVBeers)
-    };
+    // const HighABVState = () => {
+    //     setBeer(mappedHighABVBeers)
+    // };
 
-    const handleHighABVClicked = () => {
-        HighABVState()
-        mappedHighABVBeers();
-    }
+    // const handleHighABVClicked = () => {
+    //     HighABVState()
+    //     mappedHighABVBeers();
+    // }
     
-    
-  
-    useEffect(setBeer)
+
       
     return(
         <div className="sideBarContent">
-            <h2 onClick={handleAllClicked}>All Beers</h2>
-            <h2 onClick={handleAcidicClicked}>Acidic</h2>
-            <h2 onClick={handleClassicRangeClicked}>Classic Range</h2>
-            <h2 onClick={handleHighABVClicked}>High ABV</h2>
+            <div>
+                <label>All Beers</label>
+                <input type="checkbox" onClick={handleAllClicked}></input>
+            </div>
+            <div>
+                <label>Acidic</label>
+            <input type="checkbox" onClick={handleAcidicClicked}></input>
+            </div>
+            <div>
+                <label>Classic Range</label>
+                <input type="checkbox" onClick={handleClassicRangeClicked}></input>
+            </div>
+            <div>
+                <label>High ABV</label>
+                <input type="checkbox" onClick={handleHighABVClicked}></input>
+            </div>
         </div>
     )
 }
