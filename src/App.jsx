@@ -8,7 +8,12 @@ import ExploreBeers from "./containers/ExploreBeers/ExploreBeers";
 
 function App() {
   
-  const [beers, setBeer] = useState();
+  const [beers, setBeer] = useState([]);
+
+  const [aBV, setABV] = useState(false);
+  const [pH, setPH] = useState(false);
+  const [firstBrewed, setFirstBrewed] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getBeers = () => {
     fetch ("https://api.punkapi.com/v2/beers")
@@ -16,19 +21,45 @@ function App() {
       return response.json()
     })
     .then((data) => {
-      setBeer(data);
+      const dataObj = data;
+      setBeer(dataObj);
       })
-      console.log(setBeer);
+      console.log(beers);
     }
 
     useEffect(getBeers, []);
 
-    // const acidicBeers = beers.filter((beer) => {
-    //   return beers.ph < 4
-    // });
 
-    // console.log(acidicBeers);
-  
+    const handleHighABVClicked = () => {
+      setABV(!aBV)
+    };
+
+    const handleAcidicClicked = () => {
+      setPH(!pH)  
+    };
+
+    const handleClassicRangeClicked = () => {
+      setFirstBrewed(!firstBrewed)
+    };
+
+    const filteredBeer = beers.filter((beer) => {
+      let beerMatched = true;
+      if (beer.aBV) {
+        beerMatched = beerMatched && beer.aBV > 6;
+      }
+      if (beer.ph) {
+        beerMatched = beerMatched && beer.ph < 4;
+      }
+      // if (beer.firstBrewed) {
+      //   beerMatched = beerMatched && beer.firstBrewed
+      // }
+
+        return beerMatched;
+    })
+
+    
+
+
       return (
           <div>
               <div className="headerAndSearch">
@@ -37,11 +68,11 @@ function App() {
               </div>
               <div className="sideBarAndBeer">
                   <div className="sideBarContainer">
-                      {beers && <SideBar beers={beers}/>}
+                      {beers && <SideBar pH={handleAcidicClicked} aBV={handleHighABVClicked} beers={beers} firstBrewed={handleClassicRangeClicked}/>}
                   </div>
                   <div className="exploreAndBeers">
                     <div className="beerContainer">     
-                      {beers && <AllBeers beers={beers}/>}
+                      {beers && <AllBeers beers={filteredBeer}/>}
                     </div>
                   </div>
               </div>
