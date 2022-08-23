@@ -4,7 +4,7 @@ const HighABV = (props) => {
     const {beers} = props;
     
     const HighABVBeers = beers.filter((beer) => { 
-        return beers.abv > 6
+        return beer.abv > 6
       });
 
     const mappedHighABVBeers = HighABVBeers.map((beer, id) => { 
