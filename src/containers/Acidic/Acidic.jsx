@@ -4,7 +4,7 @@ const Acidic = (props) => {
     const {beers} = props;
     
     const acidicBeers = beers.filter((beer) => { 
-        return beers.ph < 4
+        return beer.ph < 4
       });
 
     const mappedAcidicBeers = acidicBeers.map((beer, id) => { 
