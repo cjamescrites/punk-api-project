@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import express from 'express';
 import bodyParser from 'body-parser';
+import router from "../routes/customBeer.js"
 
 const app = express();
 
