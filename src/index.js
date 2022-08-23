@@ -3,19 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import express from 'express';
-import bodyParser from 'body-parser';
-import router from "../routes/customBeer.js"
 
-const app = express();
-
-const port = process.env.PORT || 3010;
-
-app.listen(port, (req, res) => {
-  console.log(`Server is running on port ${port}`)
-})
-
-app.use(bodyParser.json());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
