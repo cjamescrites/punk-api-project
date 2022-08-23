@@ -3,13 +3,18 @@ import { useState, useEffect } from "react";
 import AllBeers from "./containers/AllBeers/AllBeers";
 import SideBar from "./containers/SideBar/SideBar";
 import ExploreBeers from "./containers/ExploreBeers/ExploreBeers";
+import HighABV from "./containers/HighABV/HighABV";
+import ClassicRange from "./containers/ClassicRange/ClassicRange";
+import Acidic from "./containers/Acidic/Acidic";
+import Results from "./containers/Results/Results"
+import background from "./background.png"
+import sidebarBackground from "./hops.jpg"
 
 
 
 function App() {
   
   const [beers, setBeer] = useState([]);
-
   const [aBV, setABV] = useState(false);
   const [pH, setPH] = useState(false);
   const [firstBrewed, setFirstBrewed] = useState(false);
@@ -23,56 +28,31 @@ function App() {
     .then((data) => {
       const dataObj = data;
       setBeer(dataObj);
-      })
-      console.log(beers);
-    }
+      })};
 
     useEffect(getBeers, []);
 
+    const filteredBeers = beers.filter((beer) => {
+      const beerTitleLower = beer.name.toLowerCase();
+  
+      return beerTitleLower.includes(searchTerm);
+    });
 
-    const handleHighABVClicked = () => {
-      setABV(!aBV)
-    };
-
-    const handleAcidicClicked = () => {
-      setPH(!pH)  
-    };
-
-    const handleClassicRangeClicked = () => {
-      setFirstBrewed(!firstBrewed)
-    };
-
-    const filteredBeer = beers.filter((beer) => {
-      let beerMatched = true;
-      if (beer.aBV) {
-        beerMatched = beerMatched && beer.aBV > 6;
-      }
-      if (beer.ph) {
-        beerMatched = beerMatched && beer.ph < 4;
-      }
-      // if (beer.firstBrewed) {
-      //   beerMatched = beerMatched && beer.firstBrewed
-      // }
-
-        return beerMatched;
-    })
-
-    
-
-
+  
+  
       return (
-          <div>
+          <div style={{ backgroundImage:`url(${background})` }}>
               <div className="headerAndSearch">
               <h1>Punk API</h1>
-              {beers && <ExploreBeers beers={beers}/>}
+              {beers && <ExploreBeers searchTerm={searchTerm} beers={beers} setSearchTerm={setSearchTerm} />}
               </div>
               <div className="sideBarAndBeer">
                   <div className="sideBarContainer">
-                      {beers && <SideBar pH={handleAcidicClicked} aBV={handleHighABVClicked} beers={beers} firstBrewed={handleClassicRangeClicked}/>}
+                      {beers && <SideBar pH={pH} setPH={setPH} setABV={setABV} aBV={aBV} beers={beers} firstBrewed={firstBrewed} setFirstBrewed={setFirstBrewed}/>}
                   </div>
                   <div className="exploreAndBeers">
                     <div className="beerContainer">     
-                      {beers && <AllBeers beers={filteredBeer}/>}
+                      {beers && aBV ? <HighABV beers={beers} /> : beers && searchTerm ? <Results beers={filteredBeers} /> : beers && pH ? <Acidic beers={beers}/> : beers && firstBrewed ? <ClassicRange beers={beers}/> : beers ? <AllBeers beers={beers}/> : ""}
                     </div>
                   </div>
               </div>
