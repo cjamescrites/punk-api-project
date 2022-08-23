@@ -6,7 +6,6 @@
     background-color: transparent;
     width: 80%;
     max-width: 350px;
-    border: 1px black solid;
     border-radius: 3px;
     overflow: hidden;
     padding: 20px;
@@ -22,7 +21,7 @@
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.25rem;
       width: 100%;
       word-break: break-word;
   
