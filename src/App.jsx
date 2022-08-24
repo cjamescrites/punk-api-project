@@ -8,13 +8,15 @@ import ClassicRange from "./containers/ClassicRange/ClassicRange";
 import Acidic from "./containers/Acidic/Acidic";
 import Results from "./containers/Results/Results"
 import background from "./background.png"
-import sidebarBackground from "./hops.jpg"
+import AllCustomBeers from "./containers/AllCustomBeers/AllCustomBeers"
 
 
 
 function App() {
   
   const [beers, setBeer] = useState([]);
+  const [customBeers, setCustomBeers] = useState([]);
+  const [showCustomBeers, setShowCustomBeers] = useState(false);
   const [aBV, setABV] = useState(false);
   const [pH, setPH] = useState(false);
   const [firstBrewed, setFirstBrewed] = useState(false);
@@ -30,7 +32,22 @@ function App() {
       setBeer(dataObj);
       })};
 
+      const getCustomBeerAPI = () => {
+        fetch ("http://192.168.1.74:3020/")
+        .then((response) => {
+          return response.json()
+        })
+        .then((data => {
+          const customDataObj = data.customBeer;
+          setCustomBeers(customDataObj);
+          console.log(customDataObj)
+        }))
+      }
+
+    console.log(showCustomBeers);
+
     useEffect(getBeers, []);
+    useEffect(getCustomBeerAPI, []);
 
     const filteredBeers = beers.filter((beer) => {
       const beerTitleLower = beer.name.toLowerCase();
@@ -48,11 +65,11 @@ function App() {
               </div>
               <div className="sideBarAndBeer">
                   <div className="sideBarContainer">
-                      {beers && <SideBar pH={pH} setPH={setPH} setABV={setABV} aBV={aBV} beers={beers} firstBrewed={firstBrewed} setFirstBrewed={setFirstBrewed}/>}
+                      {beers && <SideBar pH={pH} setPH={setPH} setABV={setABV} aBV={aBV} beers={beers} firstBrewed={firstBrewed} setFirstBrewed={setFirstBrewed} setShowCustomBeers={setShowCustomBeers} showCustomBeers={showCustomBeers}/>}
                   </div>
                   <div className="exploreAndBeers">
                     <div className="beerContainer">     
-                      {beers && aBV ? <HighABV beers={beers} /> : beers && searchTerm ? <Results beers={filteredBeers} /> : beers && pH ? <Acidic beers={beers}/> : beers && firstBrewed ? <ClassicRange beers={beers}/> : beers ? <AllBeers beers={beers}/> : ""}
+                      {beers && aBV ? <HighABV beers={beers} /> : beers && searchTerm ? <Results beers={filteredBeers} /> : beers && pH ? <Acidic beers={beers}/> : beers && firstBrewed ? <ClassicRange beers={beers}/> : beers ? <AllBeers beers={beers}/> : customBeers && showCustomBeers ? <AllCustomBeers customBeers={customBeers} /> : ""}
                     </div>
                   </div>
               </div>

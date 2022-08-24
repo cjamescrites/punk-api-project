@@ -5,7 +5,7 @@ import BeerCard from "../../components/BeerCard/BeerCard";
 import { useState, useEffect } from 'react';
 
 const SideBar = (props) => {
-    const {pH, setPH, firstBrewed, setFirstBrewed , setABV, aBV} = props;
+    const {pH, setPH, firstBrewed, setFirstBrewed , setABV, aBV, showCustomBeers, setShowCustomBeers} = props;
 
 
     const handleAcidicClicked = () => {
@@ -19,20 +19,16 @@ const SideBar = (props) => {
     const handleHighABVClicked = () => {
         setABV(!aBV)  
     };
+
+    const handleCustomBeerClicked = () => {
+        setShowCustomBeers(!showCustomBeers);
+      }
     
-    // const handleAllClicked = () => {
-    //   setPH(pH=true)
-    //   setFirstBrewed(firstBrewed=true)
-    //   setABV(aBV=true)
-    // };
+
 
       
     return(
         <div className="sideBarContent">
-            {/* <div>
-                <label>All Beers</label>
-                <input type="checkbox" onChange={handleAllClicked}></input>
-            </div> */}
             <div className="label">
                 <label>Acidic</label>
             <input type="checkbox" onChange={handleAcidicClicked}></input>
@@ -44,6 +40,10 @@ const SideBar = (props) => {
             <div className="label">
                 <label>High ABV</label>
                 <input type="checkbox" onChange={handleHighABVClicked}></input>
+            </div>
+            <div className="label">
+                <label>Custom Beer of the Week!</label>
+                <input type="checkbox" onChange={handleCustomBeerClicked}></input>
             </div>
         </div>
     )
