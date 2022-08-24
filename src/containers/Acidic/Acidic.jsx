@@ -1,9 +1,9 @@
 import BeerCard from "../../components/BeerCard/BeerCard"
 
 const Acidic = (props) => {
-    const {beers} = props;
+    const {filteredBeers} = props;
     
-    const acidicBeers = beers.filter((beer) => { 
+    const acidicBeers = filteredBeers.filter((beer) => { 
         return beer.ph < 4
       });
 
@@ -12,9 +12,9 @@ const Acidic = (props) => {
       });
 
     return (
-        <>
+        <div className="beerContainer">
         {mappedAcidicBeers}
-        </>
+        </div>
     );
 };
 

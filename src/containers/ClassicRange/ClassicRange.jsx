@@ -1,9 +1,9 @@
 import BeerCard from "../../components/BeerCard/BeerCard"
 
 const ClassicRange = (props) => {
-    const {beers} = props;
+    const {filteredBeers} = props;
     
-    const classicRangeBeers = beers.filter((beer) => { 
+    const classicRangeBeers = filteredBeers.filter((beer) => { 
         let firstBrewed = beer.first_brewed.slice(3)
         return Number(firstBrewed) < 2010
       });
@@ -13,9 +13,9 @@ const ClassicRange = (props) => {
       });
 
     return (
-        <>
+        <div className="beerContainer">
         {mappedClassicRangeBeers}
-        </>
+        </div>
     );
 };
 

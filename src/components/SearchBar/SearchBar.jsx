@@ -1,7 +1,8 @@
 const SearchBar = (props) => {
     const { searchTerm, handleInput } = props;
   
-  
+    
+    
     return (
       <form className="search-bar">
         <input

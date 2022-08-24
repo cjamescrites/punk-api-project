@@ -1,9 +1,9 @@
 import BeerCard from "../../components/BeerCard/BeerCard"
 
 const HighABV = (props) => {
-    const {beers} = props;
+    const {filteredBeers} = props;
     
-    const HighABVBeers = beers.filter((beer) => { 
+    const HighABVBeers = filteredBeers.filter((beer) => { 
         return beer.abv > 6
       });
 
@@ -12,9 +12,9 @@ const HighABV = (props) => {
       });
 
     return (
-        <>
+        <div className="beerContainer">
         {mappedHighABVBeers}
-        </>
+        </div>
     );
 };
 
