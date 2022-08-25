@@ -32,7 +32,7 @@ const ExploreBeers = (props) => {
         : beers && aBV ? <HighABV filteredBeers={filteredBeers} /> 
         : beers && pH ? <Acidic filteredBeers={filteredBeers}/> 
         : beers && firstBrewed ? <ClassicRange filteredBeers={filteredBeers}/> 
-        // : beers && beers ? <AllBeers filteredBeers={filteredBeers} /> 
+        : beers && beers ? <AllBeers filteredBeers={filteredBeers} /> 
         : ""}
     </>
   );
