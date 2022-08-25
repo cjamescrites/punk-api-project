@@ -32,7 +32,7 @@ function App() {
       })};
 
       const getCustomBeerAPI = () => {
-        fetch ("http://192.168.1.74:3020/")
+        fetch ("http://localhost:3020/")
         .then((response) => {
           return response.json()
         })
@@ -56,7 +56,7 @@ function App() {
           <div style={{ backgroundImage:`url(${background})` }}>
               <div className="headerAndSearch">
                 <div className="searchBar">
-                  {beers && <ExploreBeers searchTerm={searchTerm} beers={beers} setSearchTerm={setSearchTerm} pH={pH} setPH={setPH} aBV={aBV} setABV={setABV} setFirstBrewed={setFirstBrewed} firstBrewed={firstBrewed} setShowCustomBeers={setShowCustomBeers} showCustomBeers={showCustomBeers}/>}
+                  {beers && <ExploreBeers searchTerm={searchTerm} beers={beers} setSearchTerm={setSearchTerm} pH={pH} setPH={setPH} aBV={aBV} setABV={setABV} setFirstBrewed={setFirstBrewed} firstBrewed={firstBrewed} setShowCustomBeers={setShowCustomBeers} showCustomBeers={showCustomBeers} customBeers={customBeers}/>}
                 </div>
               </div>
           </div>

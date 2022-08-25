@@ -8,9 +8,9 @@ const AllCustomBeers = (props) => {
       });
 
     return (
-        <>
+        <div className="beerContainer">
         {mappedCustomBeers}
-        </>
+        </div>
     );
 };
 
